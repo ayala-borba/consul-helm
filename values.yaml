@@ -12,7 +12,7 @@ global:
 
   # name sets the prefix used for all resources in the helm chart.
   # If not set, the prefix will be "<helm release name>-consul".
-  name: null
+  name: techleads
 
   # domain is the domain Consul will answer DNS queries for
   # (see https://www.consul.io/docs/agent/options.html#_domain) and the domain
@@ -153,8 +153,8 @@ global:
 server:
   enabled: "-"
   image: null
-  replicas: 3
-  bootstrapExpect: 3 # Should <= replicas count
+  replicas: 1
+  bootstrapExpect: 1 # Should <= replicas count
 
   # enterpriseLicense refers to a Kubernetes secret that you have created that
   # contains your enterprise license. It is required if you are using an
@@ -170,7 +170,7 @@ server:
   # storage for the server pods. storage should be set to the disk size of
   # the attached volume. storageClass is the class of storage which defaults
   # to null (the Kube cluster will pick the default).
-  storage: 10Gi
+  storage: 5Gi
   storageClass: null
 
   # connect will enable Connect on all the servers, initializing a CA
@@ -579,9 +579,9 @@ connectInject:
   # True if you want to enable connect injection. Set to "-" to inherit from
   # global.enabled.
   # Requires consul-k8s >= 0.10.1.
-  enabled: false
+  enabled: true
   image: null # image for consul-k8s that contains the injector
-  default: false # true will inject by default, otherwise requires annotation
+  default: true # true will inject by default, otherwise requires annotation
 
   # The Docker image for Consul to use when performing Connect injection.
   # Defaults to global.image.
